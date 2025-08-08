@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Game Visual Shell</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div id="app">
+    <div class="bg sky"></div>
+    <div class="bg layer mountains-back"></div>
+    <div class="bg layer mountains-front"></div>
+    <div class="bg layer clouds"></div>
+
+    <div class="content">
+      <div class="menu" id="menu">
+        <h1 class="title">Your Awesome Game</h1>
+        <p class="subtitle">Crisp, modern visuals. Ready for production.</p>
+        <div class="buttons">
+          <button class="btn primary" id="btn-play">
+            <img src="../assets/ui/icons/play.svg" alt="Play" />
+            <span>Play</span>
+          </button>
+          <button class="btn ghost" id="btn-settings">
+            <img src="../assets/ui/icons/settings.svg" alt="Settings" />
+            <span>Settings</span>
+          </button>
+          <button class="btn ghost" id="btn-audio">
+            <img id="audio-icon" src="../assets/ui/icons/sound-on.svg" alt="Audio" />
+            <span>Audio</span>
+          </button>
+        </div>
+      </div>
+
+      <canvas id="scene" width="1280" height="640" class="scene" aria-label="Scene"></canvas>
+
+      <div class="hud hidden" id="hud">
+        <div class="bar">
+          <img class="bar-frame" src="../assets/ui/hud/health-bar-frame.svg" alt="Health Frame" />
+          <div class="bar-fill-wrap">
+            <img class="bar-fill" id="health-fill" src="../assets/ui/hud/health-bar-fill.svg" alt="Health" />
+          </div>
+        </div>
+        <div class="stats">
+          <div class="chip"><img src="../assets/sprites/common/coin.svg" alt="Coins" /><span id="coins">0</span></div>
+          <div class="chip"><img src="../assets/sprites/common/gem.svg" alt="Gems" /><span id="gems">0</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
