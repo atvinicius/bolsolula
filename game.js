@@ -53,6 +53,31 @@
   images.player.src = 'assets/bolsonaro.png';
   images.ghost.src = 'assets/lula.png';
 
+  // Generated art assets (SVG) used by the game rendering
+  const art = {
+    wall: new Image(),
+    pellet: new Image(),
+    power: new Image(),
+    bgSky: new Image(),
+    bgMountains: new Image(),
+  };
+  let wallImageLoaded = false;
+  let pelletImageLoaded = false;
+  let powerImageLoaded = false;
+  let bgSkyLoaded = false;
+  let bgMountainsLoaded = false;
+  art.wall.onload = () => (wallImageLoaded = true);
+  art.pellet.onload = () => (pelletImageLoaded = true);
+  art.power.onload = () => (powerImageLoaded = true);
+  art.bgSky.onload = () => (bgSkyLoaded = true);
+  art.bgMountains.onload = () => (bgMountainsLoaded = true);
+  // Use generated assets from the repo; fall back to vector-drawn shapes if not loaded
+  art.wall.src = 'assets/tiles/stone.svg';
+  art.pellet.src = 'assets/sprites/common/coin.svg';
+  art.power.src = 'assets/ui/icons/star.svg';
+  art.bgSky.src = 'assets/backgrounds/sky-gradient.svg';
+  art.bgMountains.src = 'assets/backgrounds/mountains.svg';
+
   // Audio
   let audioEnabled = true;
   let audioCtx;
@@ -628,17 +653,28 @@
   // Rendering
   function drawMaze() {
     // Background
-    ctx.fillStyle = '#0a0c10';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    if (bgSkyLoaded) {
+      ctx.drawImage(art.bgSky, 0, 0, canvas.width, canvas.height);
+      if (bgMountainsLoaded) {
+        ctx.drawImage(art.bgMountains, 0, 0, canvas.width, canvas.height);
+      }
+    } else {
+      ctx.fillStyle = '#0a0c10';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
 
     // Walls
     for (let r = 0; r < ROWS; r++) {
       for (let c = 0; c < COLS; c++) {
         const ch = tileAt(c, r);
         if (ch === 'W' || ch === 'G') {
-          ctx.fillStyle = '#273043';
           const x = c * TILE_SIZE; const y = r * TILE_SIZE;
-          drawRoundedRect(x + 2, y + 2, TILE_SIZE - 4, TILE_SIZE - 4, 6);
+          if (wallImageLoaded) {
+            ctx.drawImage(art.wall, x + 2, y + 2, TILE_SIZE - 4, TILE_SIZE - 4);
+          } else {
+            ctx.fillStyle = '#273043';
+            drawRoundedRect(x + 2, y + 2, TILE_SIZE - 4, TILE_SIZE - 4, 6);
+          }
         }
       }
     }
@@ -647,19 +683,29 @@
     for (const key of state.pellets) {
       const [c, r] = key.split(',').map(Number);
       const { x, y } = tileCenter(c, r);
-      ctx.fillStyle = '#f7d794';
-      ctx.beginPath();
-      ctx.arc(x, y, 3, 0, Math.PI * 2);
-      ctx.fill();
+      if (pelletImageLoaded) {
+        const size = 10;
+        ctx.drawImage(art.pellet, x - size / 2, y - size / 2, size, size);
+      } else {
+        ctx.fillStyle = '#f7d794';
+        ctx.beginPath();
+        ctx.arc(x, y, 3, 0, Math.PI * 2);
+        ctx.fill();
+      }
     }
-    // Power pellets (gavels)
+    // Power pellets (gavels -> star/gem icon)
     for (const key of state.powers) {
       const [c, r] = key.split(',').map(Number);
       const { x, y } = tileCenter(c, r);
-      ctx.fillStyle = '#ffd166';
-      ctx.beginPath();
-      ctx.arc(x, y, 6, 0, Math.PI * 2);
-      ctx.fill();
+      if (powerImageLoaded) {
+        const size = 14;
+        ctx.drawImage(art.power, x - size / 2, y - size / 2, size, size);
+      } else {
+        ctx.fillStyle = '#ffd166';
+        ctx.beginPath();
+        ctx.arc(x, y, 6, 0, Math.PI * 2);
+        ctx.fill();
+      }
     }
   }
 
