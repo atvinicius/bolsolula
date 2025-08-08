@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bolsolula</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1>Bolsolula</h1>
+        <div class="hud">
+          <div class="hud-item"><span class="label">Score</span> <span id="score">0</span></div>
+          <div class="hud-item"><span class="label">Level</span> <span id="level">1</span></div>
+          <div class="hud-item"><span class="label">Lives</span> <span id="lives">3</span></div>
+          <div class="hud-item"><button id="muteBtn" aria-label="Toggle sound">🔈</button></div>
+          <div class="hud-item"><button id="restartBtn" aria-label="Restart">Restart</button></div>
+        </div>
+      </header>
+
+      <main class="main">
+        <canvas id="gameCanvas" width="672" height="744"></canvas>
+        <div class="help">
+          <p>Controls: Arrow Keys or WASD. Eat all keys to clear the level. Grab gavels to turn the tables briefly.</p>
+          <p>Theme: Jail (cartoon). Player: Bolsonaro. Opponents: Lula.</p>
+        </div>
+      </main>
+
+      <footer class="footer">
+        <small>Drop custom images at <code>assets/bolsonaro.png</code> and <code>assets/lula.png</code> to replace the default cartoons.</small>
+      </footer>
+    </div>
+
+    <script defer src="./game.js"></script>
+  </body>
+</html>
