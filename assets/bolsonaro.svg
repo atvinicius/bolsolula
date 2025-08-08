@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a2a3a"/>
+      <stop offset="100%" stop-color="#0f1720"/>
+    </linearGradient>
+    <clipPath id="circle">
+      <circle cx="64" cy="64" r="58"/>
+    </clipPath>
+  </defs>
+  <rect width="128" height="128" fill="url(#bg)"/>
+  <g clip-path="url(#circle)">
+    <!-- shoulders -->
+    <rect x="0" y="86" width="128" height="42" fill="#1f2937"/>
+    <!-- face -->
+    <ellipse cx="64" cy="66" rx="30" ry="34" fill="#ffdfc7"/>
+    <!-- hair (dark brown sweep) -->
+    <path d="M34,56 C36,36 52,26 64,26 C84,26 94,40 94,56 C82,44 64,42 34,56 Z" fill="#3b2f2a"/>
+    <path d="M32,52 C40,38 54,34 70,36 C78,38 86,42 94,50 C90,36 78,26 64,26 C48,26 36,36 32,52 Z" fill="#2f241f" opacity="0.7"/>
+    <!-- brows -->
+    <rect x="48" y="62" width="12" height="3" rx="2" fill="#3b2f2a"/>
+    <rect x="68" y="62" width="12" height="3" rx="2" fill="#3b2f2a"/>
+    <!-- eyes -->
+    <circle cx="54" cy="70" r="4" fill="#ffffff"/>
+    <circle cx="74" cy="70" r="4" fill="#ffffff"/>
+    <circle cx="54" cy="70" r="2" fill="#2b3440"/>
+    <circle cx="74" cy="70" r="2" fill="#2b3440"/>
+    <!-- nose -->
+    <path d="M64,72 q-2,6 2,6" stroke="#eecfb7" stroke-width="2" fill="none"/>
+    <!-- mouth (neutral) -->
+    <path d="M54,86 q10,6 20,0" stroke="#b98f7a" stroke-width="2" fill="none"/>
+    <!-- suit and tie hint -->
+    <path d="M42,128 L64,92 L86,128 Z" fill="#0b1220"/>
+    <rect x="61" y="92" width="6" height="10" fill="#d32f2f"/>
+  </g>
+  <circle cx="64" cy="64" r="58" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+</svg>

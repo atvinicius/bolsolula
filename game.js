@@ -48,10 +48,20 @@
   };
   let playerImageLoaded = false;
   let ghostImageLoaded = false;
-  images.player.onload = () => (playerImageLoaded = true);
-  images.ghost.onload = () => (ghostImageLoaded = true);
-  images.player.src = 'assets/bolsonaro.png';
-  images.ghost.src = 'assets/lula.png';
+
+  function loadImageWithFallback(img, sources, onLoad) {
+    let idx = 0;
+    const tryNext = () => {
+      if (idx >= sources.length) return;
+      img.src = sources[idx++];
+    };
+    img.onload = () => { onLoad?.(); };
+    img.onerror = () => { tryNext(); };
+    tryNext();
+  }
+
+  loadImageWithFallback(images.player, ['assets/bolsonaro.png', 'assets/bolsonaro.svg'], () => (playerImageLoaded = true));
+  loadImageWithFallback(images.ghost, ['assets/lula.png', 'assets/lula.svg'], () => (ghostImageLoaded = true));
 
   // Generated art assets (SVG) used by the game rendering
   const art = {
