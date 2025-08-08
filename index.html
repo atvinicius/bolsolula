@@ -21,6 +21,7 @@
 
       <main class="main">
         <canvas id="gameCanvas" width="672" height="744"></canvas>
+        <div id="phaseBanner" class="banner hidden" aria-live="polite"></div>
         <div class="help">
           <p>Controls: Arrow Keys or WASD. Eat all keys to clear the level. Grab gavels to turn the tables briefly.</p>
           <p>Theme: Jail (cartoon). Player: Bolsonaro. Opponents: Lula.</p>
@@ -30,6 +31,51 @@
       <footer class="footer">
         <small>Drop custom images at <code>assets/bolsonaro.png</code> and <code>assets/lula.png</code> to replace the default cartoons.</small>
       </footer>
+
+      <div id="menuOverlay" class="overlay" role="dialog" aria-modal="true" aria-labelledby="menuTitle">
+        <div class="menu">
+          <h2 id="menuTitle">Start Game</h2>
+          <div class="rows">
+            <label class="row">
+              <span>Difficulty</span>
+              <select id="difficulty">
+                <option value="easy">Easy</option>
+                <option value="normal" selected>Normal</option>
+                <option value="hard">Hard</option>
+              </select>
+            </label>
+            <label class="row">
+              <span>Opponents</span>
+              <select id="opponents">
+                <option value="2">2</option>
+                <option value="3" selected>3</option>
+                <option value="4">4</option>
+              </select>
+            </label>
+            <label class="row">
+              <span>Controls</span>
+              <select id="controls">
+                <option value="both" selected>Arrows & WASD</option>
+                <option value="arrows">Arrows only</option>
+                <option value="wasd">WASD only</option>
+              </select>
+            </label>
+            <label class="row">
+              <span>Sound</span>
+              <select id="sound">
+                <option value="on" selected>On</option>
+                <option value="off">Off</option>
+              </select>
+            </label>
+          </div>
+          <div class="actions">
+            <button id="startBtn" class="primary">Start</button>
+          </div>
+          <div class="menu-help">
+            <p>Eat all the keys to win the level. Grabbing a gavel lets you tag opponents for bonus points. Avoid them otherwise!</p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script defer src="./game.js"></script>
